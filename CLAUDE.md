@@ -4,7 +4,9 @@ This repo is the owner's engineering HQ: everything from rough ideas to producti
 
 ## Expertise to draw on
 
-IoT, Arduino / ESP32 / ESP8266 / RP2040 / STM32, Raspberry Pi and SBCs, sensors and actuators, PCB design (KiCad, EasyEDA), robotics, hobby drones and FPV (PX4, ArduPilot, GPS, telemetry), TinyML and computer vision, embedded Linux, wireless (Wi-Fi, BLE, LoRa, Zigbee, LTE, MQTT), batteries / BMS / charging / solar, 3D printing, home automation, small-scale manufacturing.
+IoT, Arduino / ESP32 / ESP8266 / RP2040 / STM32, Raspberry Pi and SBCs, sensors and actuators, PCB design (KiCad, EasyEDA), robotics, hobby drones and FPV (PX4, ArduPilot, GPS, telemetry), TinyML and computer vision, embedded Linux, wireless (Wi-Fi, BLE, LoRa, Zigbee, LTE, MQTT), batteries / BMS / charging / solar, home automation, small-scale manufacturing.
+
+**3D printing is a core interest.** That covers FDM (and resin when relevant): design for printing, material choice, slicer tuning (OrcaSlicer, Bambu Studio, PrusaSlicer), calibration, failure diagnosis, printer firmware (Klipper, Marlin, vendor), and printing enclosures, mounts, drone and robot parts. Treat printability as part of every mechanical design. Design rules are in `docs/design-for-printing.md`.
 
 ## Owner location: Australia
 
@@ -72,7 +74,13 @@ When recommending hardware: give specific models, why chosen, alternatives, comp
 | Host / cloud / tooling code, dashboards, scripts | `software/<project>/` |
 | TinyML, vision, models, datasets, training notebooks | `ai-ml/<project>/` |
 | Airframes, flight-controller config, PX4/ArduPilot params, flight logs | `drones/<craft>/` |
-| 3D models, STLs, enclosures, mounts | `cad/<project>/` |
+| CAD source for a project (Fusion/FreeCAD/Onshape exports, STEP) | `cad/<project>/source/` |
+| Print-ready files (`.3mf`, `.stl`) and per-part print settings | `cad/<project>/print/` and `cad/<project>/print-settings.md` |
+| Printer configs, mods, maintenance | `fabrication/printers/<printer>.md` |
+| Slicer profiles (printer / filament / process) | `fabrication/slicer-profiles/` |
+| Calibration results (temp, flow, PA, tolerance) | `fabrication/calibration/` |
+| Filament library (what works, at what settings) | `fabrication/filaments.md` |
+| Design-for-printing rules | `docs/design-for-printing.md` |
 | Bill of materials | `bom/<project>.csv` |
 | Measurements, benchmarks, test reports | `test-results/<project>/YYYY-MM-DD-<test>.md` |
 | Dated build diary entries | `build-logs/<project>/YYYY-MM-DD.md` |
@@ -91,7 +99,8 @@ Rules of thumb:
 Whenever you add or change one of these, update its index in the same step:
 - Projects → `projects/README.md` (name, status, one-liner, last update)
 - Decisions → `decisions/README.md` (number, title, status, scope)
-- Parts bought, used up or freed → `components/inventory.md`
+- Parts or filament bought, used up or freed → `components/inventory.md`
+- Print lessons learned (a fix, a measured tolerance, a good setting) → `fabrication/filaments.md`, `docs/design-for-printing.md` or the printer file
 - Technology adopted, trialled, rejected or spotted → `research/tech-radar.md`
 
 ## Templates (`_templates/`)
@@ -108,6 +117,8 @@ Whenever you add or change one of these, update its index in the same step:
 | `test-report.md` | Test results |
 | `build-log.md` | Build diary entry |
 | `bom.csv` | Bill of materials |
+| `printer.md` | A 3D printer's setup and maintenance log |
+| `print-settings.md` | A printed part's settings and print history |
 
 ## Project skills (`.claude/skills/`)
 
@@ -120,6 +131,7 @@ Whenever you add or change one of these, update its index in the same step:
 | `/select-components` | Choose parts, write the comparison, update the BOM |
 | `/build-log` | Log a build session |
 | `/test-report` | Record a test and its results |
+| `/print-job` | 3D printing: printability review, settings, failure diagnosis, calibration, print records |
 | `/tech-watch` | Check the tech radar for new releases, deprecations and new options |
 | `/vz-status` | Audit the repo: project status, missing docs, stale work, broken indexes |
 
@@ -135,7 +147,7 @@ Use the matching skill when a request fits one, even if the owner doesn't name i
 
 ## Safety and working rules
 
-- Flag safety issues proactively: LiPo charging/storage, mains voltage, props and motors, RF regulations, heat, short-circuit protection. For drones, remind about local regulations and failsafe testing (props off first).
+- Flag safety issues proactively: LiPo charging/storage, mains voltage, props and motors, RF regulations, heat, short-circuit protection, and 3D printer fire risk and fumes (ABS/ASA/resin). For drones, remind about local regulations and failsafe testing (props off first).
 - Don't delete or overwrite existing docs without looking at them first; archive instead.
 - Don't commit or push unless asked.
 - Prefer small, testable steps: bench test before integration, integration before field test.

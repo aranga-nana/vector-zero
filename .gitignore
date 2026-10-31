@@ -19,6 +19,15 @@ __pycache__/
 .venv/
 node_modules/
 
+# 3D printing: G-code is generated, so keep the .3mf instead
+*.gcode
+*.bgcode
+*.gcode.3mf
+
+# CAD backups
+*.FCBak
+*.FCStd1
+
 # KiCad backups and caches
 *-backups/
 *.kicad_prl

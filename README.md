@@ -18,7 +18,8 @@ Engineering HQ: ideas, projects, research, designs, firmware, and the reasoning 
 | `software/` | Host-side, cloud, and tooling code |
 | `ai-ml/` | TinyML / vision / model experiments |
 | `drones/` | Airframes, FC configs, PX4/ArduPilot params, flight logs |
-| `cad/` | 3D models, STLs, enclosures |
+| `cad/` | Per-project CAD source and print files (`cad/<project>/source/`, `print/`) |
+| `fabrication/` | 3D printers, slicer profiles, calibration results, filament library |
 | `bom/` | Bills of materials |
 | `test-results/` | Measurements, benchmarks, test reports |
 | `build-logs/` | Dated build diaries |
@@ -42,10 +43,11 @@ Project skills in `.claude/skills/`:
 | `/select-components` | Pick parts and build the BOM |
 | `/build-log` | Log a bench session |
 | `/test-report` | Record a test |
+| `/print-job` | Get help with 3D printing: design review, settings, failed prints, calibration |
 | `/tech-watch` | Refresh the tech radar from the web |
 | `/vz-status` | Audit the repo and get a status report |
 
-Key living docs: [projects/README.md](projects/README.md), [decisions/README.md](decisions/README.md), [components/inventory.md](components/inventory.md), [research/tech-radar.md](research/tech-radar.md).
+Key living docs: [projects/README.md](projects/README.md), [decisions/README.md](decisions/README.md), [components/inventory.md](components/inventory.md), [research/tech-radar.md](research/tech-radar.md), [fabrication/filaments.md](fabrication/filaments.md), [docs/design-for-printing.md](docs/design-for-printing.md).
 
 ## Conventions
 
